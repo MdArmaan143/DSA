@@ -32,6 +32,7 @@ public class quickS {
                 arr[i] = temp;
             }
         }
+        //extra swp for pivot ko sahi posiyion pe laane ke liye
          i++;
                 //swap
                 int temp = pivot;
@@ -48,3 +49,9 @@ public class quickS {
         travers(arr);
     }
 }
+
+/*
+ * step 1 base case si>=ei return
+ * step2 partion krte h aur pivot ka index find krte h 
+ * step 3 quicksort call krte h left ke liye aur rght ke liye
+ */
