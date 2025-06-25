@@ -109,11 +109,73 @@ public class MergeSortLL {
         size--;
         return val; 
     }
+    public static Node midNode(Node head){
+        
+        Node slow = head;
+        Node fast = head.next;
+        while (fast!=null && fast.next!= null) {
+            slow = slow.next;
+            fast = fast.next;
+            
+        }
+        return slow;
+    }
+
+    public static Node mergeSort(Node head){
+        if (head==null || head.next==null){
+            return head;
+
+        }
+        //find mid
+        Node mid = midNode(head);
+
+
+        Node rightHead = mid.next;
+        mid.next = null;
+
+        //step2 call
+       Node newRight =  mergeSort(rightHead);
+        Node newLeft = mergeSort(head);
+
+        //step3
+        return merge(newLeft,newRight);
+
+        
+    }
+
+    public static Node merge(Node head1,Node head2){
+        Node mergedLL = new Node(-1);
+        Node temp = mergedLL;
+        while (head1!=null && head2!=null) {
+            if(head1.data < head2.data){
+                temp.next = head1;
+                head1 = head1.next;
+                temp = temp.next;
+            }else{
+                temp.next = head2;
+                head2 = head2.next;
+                temp = temp.next;
+            }
+            
+        }
+        while (head1!=null) {
+              temp.next = head1;
+                head1 = head1.next;
+                temp = temp.next;
+            
+        }
+        while (head2!=null) {
+             temp.next = head2;
+                head2 = head2.next;
+                temp = temp.next;
+        }
+        return mergedLL.next;
+    }
 
 
     public static void main(String[] args) {
         //linked list object
-        ADD ll = new ADD();
+        MergeSortLL ll = new MergeSortLL();
         
         ll.addFirst(1);
        
@@ -124,6 +186,9 @@ public class MergeSortLL {
         ll.addFirst(4);
        
         ll.addFirst(5);
+        ll.print();
+
+     head = mergeSort(head);
         ll.print();
        
      
