@@ -64,3 +64,15 @@ public class MergeS {
     }
     
 }
+
+
+/*merge sort me
+ * step 1 base case likha ki si>=ei return
+ * step 2 mid find kiya by using si + (ei-si)/2
+ * step3 mergsort caal kiya left ke liye and right ke liye MereSort(arr,si,mid),MergeSort(arr,mid+1,ei)
+ * call merge funtion mer(arr,ai,mid,ei)
+ * merge ke ander me ek temp array bnaeynge size ei-si+1
+ * teen index lenge ek left ke liye ek right ke liye ek temp array ke 
+ * while condition
+ * end me copy temp to original array;
+ */
