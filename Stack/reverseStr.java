@@ -4,11 +4,10 @@ import java.util.*;
 public class reverseStr {
     public static String reverseString(String str){
         Stack<Character> s = new Stack<>();
-        int idx = 0;
-        while (idx<str.length()) {
-            s.push(str.charAt(idx));
-            idx++;
-            
+       
+        for(int i = 0;i<str.length();i++){
+            char ch = str.charAt(i);
+            s.push(ch);
         }
         StringBuilder result = new StringBuilder("");
         while (!s.isEmpty()) {
@@ -21,7 +20,7 @@ public class reverseStr {
       
     }
     public static void main(String[] args) {
-        String str = "abcd";
+        String str = "rst";
         String result = reverseString(str);
         System.out.println(result);
         
