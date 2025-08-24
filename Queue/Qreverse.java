@@ -10,10 +10,8 @@ public class Qreverse {
         for(int i=0;i<size;i++){
             s.push(q.remove());
         }
-        while(!s.isEmpty()){
-            System.out.print(s.peek());
-            s.pop();
-        }
+        
+        
         while(!s.isEmpty()){
             q.add(s.pop());
         }
