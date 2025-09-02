@@ -1,4 +1,5 @@
 package BST;
+import java.util.*;
 
 public class deleteinBST {
     static class Node{
@@ -96,20 +97,85 @@ public class deleteinBST {
             printInRange(root.right, k1, k2);
         }
     }
+    public static void printPath(ArrayList<Integer> path){
+        for(int i = 0;i<path.size();i++){
+            System.out.print(path.get(i) + "->");
+        }
+        System.out.println("null");
+    }
+    public static void printRoot2Leaf(Node root, ArrayList<Integer> path){
+        if(root==null){
+            return;
+        }
+        path.add(root.data);
+        if(root.left==null && root.right == null){
+            printPath(path);
+        }
+        printRoot2Leaf(root.left, path);
+        printRoot2Leaf(root.right, path);
+        path.remove(path.size()-1);
+    }
+
+    public static boolean isValidBST(Node root, Node min, Node max){
+        if(root==null){
+            return true;
+        }
+        if(min !=null && root.data<=min.data){
+            return false;
+        }
+        else if (max != null && root.data >= max.data) {
+            return false;
+            
+        }
+        return isValidBST(root.left, min, root) && isValidBST(root.right, root, max);
+    }
+    public static Node mirrorBST(Node root){
+        if(root==null){
+            return root;
+
+        }
+        Node leftSubTree = mirrorBST(root.left);
+        Node rightSubTree = mirrorBST(root.right);
+        root.left = rightSubTree;
+        root.right = leftSubTree;
+        return root ; 
+    }
+    public static Node balancedBst(int arr[], int st, int end){
+        if(st>end){
+        return null;
+        }
+        int mid = (st+end)/2;
+        Node root = new Node(arr[mid]);
+        root.left = balancedBst(arr, st, mid-1);
+        root.right = balancedBst(arr, mid+1, end);
+        return root;
+    }
 
     public static void main(String args[]){
-    int values[] = {8,5,3,1,4,6,10,11,14};
+    int values[] = {8,5,3,6,10,11};
+    int arr[] = {3,5,6,8,10,11,12};
         Node root = null;
 
         for(int i = 0; i<values.length;i++){
             root = insert(root, values[i]);
 
         }
-        inorder(root);System.out.println();
-        printInRange(root, 5, 12);
+        // inorder(root);System.out.println();
+        // System.out.println(mirrorBST(root).data);
+        //  inorder(root);System.out.println();
+        System.out.println( balancedBst(arr, 0, arr.length-1).data);
+        inorder( balancedBst(arr,0,arr.length-1));
+         
+        // printInRange(root, 5, 12);
         // delete(root, 8);
         // inorder(root);
         // System.out.println();
+        // printRoot2Leaf(root, new ArrayList<>());
+        // if(isValidBST(root, null, null)){
+        //     System.out.print("valid");
+        // }else{
+        //     System.out.println("not valid");
+        // }
     }
     
 }
